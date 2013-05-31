@@ -1,0 +1,9 @@
+#!/system/bin/sh
+# - zRam activation - 200Mb
+if [ -e /sys/block/zram0/disksize ] ; then
+  swapoff /dev/block/zram0
+  echo 1 > /sys/block/zram0/reset
+  echo 209715200 > /sys/block/zram0/disksize
+  echo 1 > /sys/block/zram0/initstate
+  swapon /dev/block/zram0
+fi
